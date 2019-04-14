@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.company.enroller.model.Meeting;
 import com.company.enroller.model.Participant;
 import com.company.enroller.persistence.ParticipantService;
+import com.company.enroller.persistence.MeetingService;
 
 @RestController
 @RequestMapping("/meetings")
 public class MeetingRestController {
-
+	
+	@Autowired
+	ParticipantService participantService;
+	
 	@Autowired
 	ParticipantService meetingService;
 
-	@Autowired
-	ParticipantService participantService;
+
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<?> getMeeting() {
@@ -30,12 +33,13 @@ public class MeetingRestController {
 		return new ResponseEntity<Collection<Meeting>>(meetings, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getMeeting(@PathVariable("id") String login) {
-	     Participant participant = participantService.findByLogin(login);
-	     if (participant == null) {
-	         return new ResponseEntity(HttpStatus.NOT_FOUND);
-	     }
+	@RequestMapping(value = "/{id}/participants/{participantid}", method = RequestMethod.POST)
+	public ResponseEntity<?> addParticipantToMeeting(@PathVariable("id") int id, ...TODO) {
+			//pobrac cpotkanie
+			//pobrac uczestnika
+		
+		//dodać uczestnika do spotkania
+		}
 	     return new ResponseEntity<Participant>(participant, HttpStatus.OK);
 	 }
 	
